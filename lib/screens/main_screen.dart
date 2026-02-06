@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:formative_assignment_1/screens/assignments/assignment_list_screen.dart'; // Member 2 Import
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -10,9 +11,10 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
+  // Real screens
   static final List<Widget> _widgetOptions = <Widget>[
     const Center(child: Text('Dashboard Placeholder - By Member 4')),
-    const Center(child: Text('Assignments Placeholder - By Member 2')),
+    const AssignmentListScreen(), // Integrated by Member 2
     const Center(child: Text('Schedule Placeholder - By Member 3')),
   ];
 
@@ -26,7 +28,6 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _widgetOptions.elementAt(_selectedIndex),
-      
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
