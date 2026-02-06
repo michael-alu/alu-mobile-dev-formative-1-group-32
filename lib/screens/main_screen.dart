@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:formative_assignment_1/screens/assignments/assignment_list_screen.dart'; // Member 2 Import
+import 'package:formative_assignment_1/screens/assignments/assignment_list_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -13,9 +13,9 @@ class _MainScreenState extends State<MainScreen> {
 
   // Real screens
   static final List<Widget> _widgetOptions = <Widget>[
-    const Center(child: Text('Dashboard Placeholder - By Member 4')),
-    const AssignmentListScreen(), // Integrated by Member 2
-    const Center(child: Text('Schedule Placeholder - By Member 3')),
+    const Center(child: Text('Dashboard Placeholder - By Karabo')),
+    const AssignmentListScreen(), // Integrated by Gloire
+    const Center(child: Text('Schedule Placeholder - By Noel')),
   ];
 
   void _onItemTapped(int index) {
