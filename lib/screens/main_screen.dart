@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:formative_assignment_1/screens/assignments/assignment_list_screen.dart';
 import 'package:formative_assignment_1/screens/schedule/schedule_screen.dart';
+import 'package:formative_assignment_1/screens/dashboard/dashboard_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -14,7 +15,7 @@ class _MainScreenState extends State<MainScreen> {
 
   // Real screens
   static final List<Widget> _widgetOptions = <Widget>[
-    const Center(child: Text('Dashboard Placeholder - By Karabo')),
+    const DashboardScreen(), // Integrated by Karabo
     const AssignmentListScreen(), // Integrated by Gloire
     const ScheduleScreen(), // Integrated by Noel
   ];
