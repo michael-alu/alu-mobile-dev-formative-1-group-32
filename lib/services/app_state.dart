@@ -2,9 +2,11 @@ import 'package:flutter/foundation.dart';
 import '../models/assignment.dart';
 import '../models/academic_session.dart';
 import 'storage_service.dart';
+import 'notification_service.dart'; // Member 5 Import
 
 class AppState extends ChangeNotifier {
   final StorageService _storageService = StorageService();
+  final NotificationService _notificationService = NotificationService();
 
   List<Assignment> _assignments = [];
   List<AcademicSession> _sessions = [];
@@ -24,10 +26,22 @@ class AppState extends ChangeNotifier {
   void addAssignment(Assignment assignment) {
     _assignments.add(assignment);
     _saveAssignments();
+
+    // Schedule reminder for 24 hours before due date
+    if (!assignment.isCompleted) {
+      _notificationService.scheduleNotification(
+        id: assignment.id.hashCode,
+        title: 'Assignment Due Soon!',
+        body: '${assignment.title} is due tomorrow.',
+        scheduledDate: assignment.dueDate.subtract(const Duration(hours: 24)),
+      );
+    }
+
     notifyListeners();
   }
 
   void deleteAssignment(String id) {
+    _notificationService.cancelNotification(id.hashCode);
     _assignments.removeWhere((element) => element.id == id);
     _saveAssignments();
     notifyListeners();
@@ -77,7 +91,8 @@ class AppState extends ChangeNotifier {
 
   double calculateAttendancePercentage() {
     // Only consider sessions that have already occurred
-    final pastSessions = _sessions.where((s) => s.date.isBefore(DateTime.now())).toList();
+    final pastSessions =
+        _sessions.where((s) => s.date.isBefore(DateTime.now())).toList();
     if (pastSessions.isEmpty) return 100.0;
 
     final attendedCount = pastSessions.where((s) => s.isPresent).length;
