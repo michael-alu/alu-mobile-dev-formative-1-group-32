@@ -4,7 +4,12 @@ import 'package:formative_assignment_1/screens/main_screen.dart';
 import 'package:formative_assignment_1/services/app_state.dart';
 import 'package:formative_assignment_1/theme/app_theme.dart';
 
-void main() {
+import 'package:formative_assignment_1/services/notification_service.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await NotificationService().init();
+
   runApp(
     MultiProvider(
       providers: [
